@@ -17,8 +17,8 @@
   예) `EUNWOO_1`
 
 - 워크북 실습 시 (주차별 과제):  
-  **이름_주차_워크북**  
-  예) `EUNWOO_WEEK2_WORKBOOK`
+  **이름_워크북**  
+  예) `EUNWOO_WORKBOOK`  
 
 ### 📘 강의 번호 안내
 
