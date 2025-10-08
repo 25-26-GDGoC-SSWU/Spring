@@ -30,7 +30,13 @@
 
 <br>
 
-## 🧑‍💻 실습 방법
+## 🛠️ 실습 방법
+- 새로 시작하는 경우 → 실습 방법 1  
+- 기존 프로젝트 업로드 → 실습 방법 2
+
+<br>
+
+## 🧑‍💻 실습 방법 1 (코드 작성 시작 전)
 
 ### 1️⃣ 레포지토리 클론
 
@@ -55,6 +61,53 @@ git commit -m "스프링 입문 실습 1차 업로드"
 ```bash
 # 예: EUNWOO_1 브랜치로 푸시
 git push origin EUNWOO_1
+```
+
+<br>
+
+## 🧑‍💻 실습 방법 2 (이미 존재하는 프로젝트를 업로드 하고 싶을 때)
+
+### 1️⃣ Git 초기화 및 원격 리포지토리 연결
+```bash
+# 현재 로컬 프로젝트 폴더로 이동
+cd [내_프로젝트_폴더명]
+
+# 만약 이미 git이 연결되어 있다면 .git 폴더 삭제
+rm -rf .git
+
+# Git 초기화
+git init
+
+# 원격 저장소 연결
+git remote add origin https://github.com/25-26-GDGoC-SSWU/Spring.git
+```
+
+### 2️⃣ 브랜치 생성
+- 브랜치가 원격 리포지토리에 없을 경우
+```bash
+# 예: EUNWOO_1 브랜치 생성 및 이동
+git checkout -b EUNWOO_1
+```
+- 브랜치가 원격 리포지토리에 있을 경우
+```bash
+# 원격 브랜치 목록 갱신
+git fetch origin
+
+# 예: 원격의 EUNWOO_1 브랜치를 로컬에 동일하게 생성 및 연결
+git checkout -b EUNWOO_1 origin/EUNWOO_1
+```
+
+### 3️⃣ 코드 추가 및 커밋
+```bash
+# 모든 파일 스테이징 후 커밋
+git add .
+git commit -m "커밋 메시지 자유롭게 입력"
+```
+
+### 4️⃣ 브랜치 푸시
+```bash
+# 브랜치를 원격 저장소에 푸시
+git push -u origin EUNWOO_1
 ```
 
 <br>
