@@ -1,0 +1,30 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.10'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot' //자바 버전
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral() //해당 공개 사이트에서 dependencies에 해당하는 파일 다운
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //html 만든 템플릿 엔진
+	implementation 'org.springframework.boot:spring-boot-starter-web' //web 프로젝트 설정
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' //테스트 라이브러리 자동 삽입
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
