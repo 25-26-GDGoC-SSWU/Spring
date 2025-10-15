@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hello.hello_spring.repository.MemoryMemberRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-10-07T15:02:01.064Z" hostname="DESKTOP-AR0R7BQ" time="0.254">
+  <properties/>
+  <testcase name="findByName()" classname="hello.hello_spring.repository.MemoryMemberRepositoryTest" time="0.254"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
