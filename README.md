@@ -20,3 +20,7 @@
 > - 스프링 JdbcTemplate
 > - JPA
 > - 스프링 데이터 JPA
+
+## 🫧 3주차
+- AOP 개념 학습
+- AOP 실습
