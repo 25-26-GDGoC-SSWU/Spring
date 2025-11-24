@@ -5,6 +5,8 @@ import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
@@ -22,13 +24,44 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
-    public List<Order> findAll(OrderSearch orderSearch){
+    public List<Order> findAllByString(OrderSearch orderSearch){
+        // language=JPAQL
+        String jpql = "select o from Order o join o.member m";
+        boolean isFirstCondition = true;
 
-        return em.createQuery("select o from Order o join o.member m" +
-                "where 0.status = :status" +
-                "and m.name like :name", Order.class)
-                .setParameter("status", orderSearch.getOrderStatus())
-                .setMaxResults(1000) //최대 1000건까지만 조회됨
-                .getResultList();
+        // 주문 상태 검색
+        if (orderSearch.getOrderStatus() != null) {
+            if (isFirstCondition) {
+                jpql += " where";
+                isFirstCondition = false;
+            } else {
+                jpql += " and";
+            }
+            jpql += " o.status = :status";
+        }
+
+        // 회원 이름 검색
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
+            if (isFirstCondition) {
+                jpql += " where";
+                isFirstCondition = false;
+            } else {
+                jpql += " and";
+            }
+            jpql += " m.name like :name";
+        }
+
+        TypedQuery<Order> query = em.createQuery(jpql, Order.class)
+                .setMaxResults(1000); // 최대 1000건
+
+        if (orderSearch.getOrderStatus() != null) {
+            query.setParameter("status", orderSearch.getOrderStatus());
+        }
+
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
+            query.setParameter("name", orderSearch.getMemberName());
+        }
+
+        return query.getResultList();
     }
 }
