@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED) // JPA를 위한 기본 생성자
+@NoArgsConstructor(access = AccessLevel.PROTECTED) 
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,13 +40,13 @@ public class Post {
         this.updatedAt = now;
     }
 
-    // 수정 시 시간을 업데이트하기 위한 메소드 (선택 사항)
+
     @PreUpdate
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
 
-    @Builder // 안전하고 편리한 객체 생성을 위한 빌더 패턴
+    @Builder
     public Post(String title, String content, Member member) {
         this.title = title;
         this.content = content;
