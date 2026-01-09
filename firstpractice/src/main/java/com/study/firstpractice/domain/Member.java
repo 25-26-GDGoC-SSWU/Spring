@@ -27,4 +27,11 @@ public class Member {
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    public Member(String email, String password, String nickname) {
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.createdAt = LocalDateTime.now(); //null 에러 방지용
+    }
 }
