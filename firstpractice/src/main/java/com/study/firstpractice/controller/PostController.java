@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostService postService;
 
-    @PostMapping
+    @PostMapping()
     public PostResponseDto createPost(@RequestBody PostRequestDto requestDto){
         return postService.createPost(requestDto);
     }
@@ -21,4 +21,6 @@ public class PostController {
     public PostResponseDto getPost(@PathVariable Long postId){
         return postService.getPost(postId);
     }
+
+
 }
