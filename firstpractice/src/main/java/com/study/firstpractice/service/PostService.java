@@ -4,6 +4,8 @@ import com.study.firstpractice.domain.Member;
 import com.study.firstpractice.domain.Post;
 import com.study.firstpractice.dto.PostRequestDto;
 import com.study.firstpractice.dto.PostResponseDto;
+import com.study.firstpractice.exception.ErrorCode;
+import com.study.firstpractice.exception.GeneralException;
 import com.study.firstpractice.repository.MemberRepository;
 import com.study.firstpractice.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PostService {
     private final MemberRepository memberRepository;
     private final PostRepository postRepository;
@@ -31,9 +34,10 @@ public class PostService {
         return PostResponseDto.from(savedPost);
     }
 
-    @Transactional(readOnly = true)
+    //[2주차 추가] 공통 예외 처리 사용
     public PostResponseDto getPost(Long postId){
-        Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new GeneralException(ErrorCode.RESOURCE_NOT_FOUND));
 
         return PostResponseDto.from(post);
     }
